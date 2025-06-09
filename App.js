@@ -14,7 +14,6 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Entypo from "@expo/vector-icons/Entypo";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import { Ionicons } from "@expo/vector-icons";
-
 //
 // Screens del Primer Stack
 //
@@ -162,6 +161,30 @@ function ScreenC2() {
     </View>
   );
 }
+// Screens del Cuarto Stack
+function ScreenD1() {
+  const navigation = useNavigation();
+  return <View style={styles.perfilScreen}>
+     <TouchableOpacity  
+        onPress={() => navigation.navigate("ScreenD2")}>
+          <Text style={styles.btn}>
+            Hola 
+          </Text>
+
+        </TouchableOpacity>
+     
+       
+      
+  </View>;
+}
+
+function ScreenD2() {
+  const navigation = useNavigation();
+  return <View style={styles.perfilScreen}>
+
+
+  </View>;
+}
 
 //
 // Creación de los stacks
@@ -222,7 +245,14 @@ function StackCNavigator() {
     </StackC.Navigator>
   );
 }
-
+function StackDNavigator() {
+  return (
+    <StackB.Navigator>
+      <StackB.Screen name="ScreenD1" component={ScreenD1} />
+      <StackB.Screen name="ScreenD2" component={ScreenD2} />
+    </StackB.Navigator>
+  );
+}
 const Tab = createBottomTabNavigator();
 function MyTabs() {
   return (
@@ -255,6 +285,15 @@ function MyTabs() {
           ),
         }}
       />
+      <Tab.Screen
+        name="Llamadas"
+        component={StackDNavigator}
+        options={{
+          tabBarIcon: ({ color }) => (
+            <Ionicons name="call" size={24} color="black" />
+          ),
+        }}
+      />
     </Tab.Navigator>
   );
 }
@@ -273,6 +312,11 @@ export default function App() {
 // css
 
 const styles = StyleSheet.create({
+  btn:{
+    color: "black",
+    backgroundColor: "#24f5f8",
+    borderRadius: 10
+  },
   container: {
     flex: 1,
     justifyContent: "center",
@@ -308,7 +352,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#0000ff",
+    backgroundColor: "#fff",
   },
   label: {
     fontSize: 16,
